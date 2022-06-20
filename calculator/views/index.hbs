@@ -8,9 +8,9 @@
 
 <form id ="add" action="/add" method="post">
   <label for="num1">num1:</label><br>
-  <input type="text" id="num2" name="num1" value=><br>
+  <input type="number" id="num2" name="num1" value=><br>
   <label for="num2">num2:</label><br>
-  <input type="text" id="num1" name="num2" value=><br><br>
+  <input type="number" id="num1" name="num2" value=><br><br>
   <label for="num3">answer:</label><br>
   <input type="text" name="num3" id="num3" readonly placeholder="Answer" value="{{c}}">
   <button id="add" type="submit">Add</button>
@@ -29,7 +29,7 @@
  $("#sub").click(function(){
   $.ajax({url: "/sub", success: function() 
 });
-$("#multi").click(function(){
+$("#calcaa").click(function(){
   $.ajax({url: "/multi", success: function() 
 });
 </script>
