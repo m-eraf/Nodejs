@@ -6,30 +6,30 @@
 <body>
 <h1>Mini Calculator</h1>
 
-<form id ="calc" action="/add" method="post">
+<form id ="add" action="/add" method="post">
   <label for="num1">num1:</label><br>
   <input type="text" id="num2" name="num1" value=><br>
   <label for="num2">num2:</label><br>
   <input type="text" id="num1" name="num2" value=><br><br>
   <label for="num3">answer:</label><br>
   <input type="text" name="num3" id="num3" readonly placeholder="Answer" value="{{c}}">
-  <button id="calc" type="submit">Add</button>
-   <button id="calca" type="submit" formaction="/sub">
+  <button id="add" type="submit">Add</button>
+   <button id="sub" type="submit" formaction="/sub">
             sub
         </button>
-   <button id="calcaa" type="submit" formaction="/multi">
+   <button id="multi" type="submit" formaction="/multi">
             multi
         </button>
 </form>
 
 <script>
-    $("#calc").click(function(){
+    $("#add").click(function(){
   $.ajax({url: "/add", success: function() 
 });
- $("#calca").click(function(){
+ $("#sub").click(function(){
   $.ajax({url: "/sub", success: function() 
 });
-$("#calcaa").click(function(){
+$("#multi").click(function(){
   $.ajax({url: "/multi", success: function() 
 });
 </script>
