@@ -18,14 +18,14 @@ router.get('/',function(req, res){
 router.post('/add',function(req, res){
   console.log(req.body);
   var o = "+";
-  var x = parseInt(req.body.a);
-  var y =parseInt(req.body.b);
+  var a = parseInt(req.body.a);
+  var b =parseInt(req.body.b);
   var result =x+y;
   console.log(result);
   res.json(result);
   con.getConnection(function (err,connection){
     var sql= "INSERT INTO calcu (num1, num2 , oper, sol)\
-     VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+     VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
     connection.query(sql,function(err,rows){
        connection.release();
        if(err) throw err;
@@ -37,14 +37,14 @@ router.post('/add',function(req, res){
 router.post('/sub',function(req, res){
   console.log(req.body);
   var o = "-";
-  var x = parseInt(req.body.a);
-  var y =parseInt(req.body.b);
+  var a = parseInt(req.body.a);
+  var b =parseInt(req.body.b);
   var result =x-y;
   console.log(result);
   res.json(result);
   con.getConnection(function (err,connection){
     var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
-    VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+    VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
     connection.query(sql,function(err,rows){
        if(err) throw err;
        console.log(rows.length);
@@ -55,14 +55,14 @@ router.post('/sub',function(req, res){
 router.post('/mul',function(req, res){
   console.log(req.body);
   var o = "*";
-  var x = parseInt(req.body.a);
-  var y =parseInt(req.body.b);
+  var a = parseInt(req.body.a);
+  var b =parseInt(req.body.b);
   var result =x*y;
   console.log(result);
   res.json(result);
   con.getConnection(function (err,connection){
     var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
-    VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+    VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
     connection.query(sql,function(err,rows){
        connection.release();
        if(err) throw err;
