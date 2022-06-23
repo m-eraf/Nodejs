@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var _ = require('underscore');
 var mysql = require('mysql');
 
 var con = mysql.createPool({
