@@ -1,40 +1,107 @@
 <!DOCTYPE html>
-<html>
-  <head>
-<link rel="stylesheet" href="public/stylesheets/style.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>           
 </head>
 <body>
-<h1>Mini Calculator</h1>
 
-<form id ="add" action="/add" method="post">
-  <label for="num1">num1:</label><br>
-  <input type="number" id="num2" name="num1" value=><br>
-  <label for="num2">num2:</label><br>
-  <input type="number" id="num1" name="num2" value=><br><br>
-  <label for="num3">answer:</label><br>
-  <input type="text" name="num3" id="num3" readonly placeholder="Answer" value="{{c}}">
-  <button id="add" type="submit">Add</button>
-   <button id="sub" type="submit" formaction="/sub">
-            sub
-        </button>
-   <button id="multi" type="submit" formaction="/multi">
-            multi
-        </button>
-</form>
+    <div id="calc">
+        <img src="public/images/image.gif" alt="ResConnect Logo"/>
+        <form>           
+                <label for="num1">num1:</label><br>
+                <input class="num1" type="number" id="num1" name="num1" value=><br>
+                <label for="num2">num2:</label><br>
+                <input class="num2" type="number" id="num2" name="num2" value=><br><br>
+                <button id="1" class="add">+</button>
+                <button id="2" class="sub">-</button>
+                <button id="3" class="mul">x</button><br>
+                <br>
+        </form>
+    </div>
+    <div id="calc">
 
-<script>
-    $("#add").click(function(){
-  $.ajax({url: "/add", success: function() 
-});
- $("#sub").click(function(){
-  $.ajax({url: "/sub", success: function() 
-});
-$("#multi").click(function(){
-  $.ajax({url: "/multi", success: function() 
-});
-</script>
+        <table border="1" 
+           align="right" > 
+            <tr>
+                 <th>Num1</th>
+                <th>Num2</th>
+                <th>Oper.</th>
+                <th>Sol.</th>
+            </tr>
+    
+            <tr>
+                <td class="x"></td>
+                <td class="y"></td>
+                <td class="op"></td>
+                <td class="res"></td>
+            </tr>
+        </table>
 
+    </div>
+    {{#obj}}
+    {{/obj}}
+    <script>
+       
+        $(document).ready(() => {
+             var m = $(".num1").val();
+            var n = $(".num2").val();
+            $(".add").click(function (event) {
+                event.preventDefault()
+                console.log($(".num1").val())
+                console.log($(".num2").val())
+                var m = $(".num1").val()
+                var n = $(".num2").val()
+                $.post({ url: "/add", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
+                    console.log(data);
+                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
+                    $(".x").append('<p>' + m + '</p>');
+                    $(".y").append('<p>' + n + '</p>');
+                    $(".res").append('<p>' + data + '</p>');
+                    $(".op").append('<p>+<p>');
+                });
+            });
+        })
+        $(document).ready(() => {
+            $(".sub").click(function (event) {
+                event.preventDefault()
+                console.log($(".num1").val())
+                console.log($(".num2").val())
+                var m = $(".num1").val();
+                var n = $(".num2").val();
+                var m = $(".num1").val()
+                var n = $(".num2").val()
+                $.post({ url: "/sub", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
+                    console.log(data);
+                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
+                    $(".x").append('<p>' + m + '</p>');
+                    $(".y").append('<p>' + n + '</p>');
+                    $(".res").append('<p>' + data + '</p>');
+                    $(".op").append('<p>-<p>');
+                });
+            });
+        })
+        $(document).ready(() => {
+            $(".mul").click(function (event) {
+                event.preventDefault()
+                console.log($(".num1").val())
+                console.log($(".num2").val())
+                var m = $(".num1").val()
+                var n = $(".num2").val()
+                $.post({ url: "/mul", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
+                    console.log(data);
+                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
+                    $(".x").append('<p>' + m + '</p>');
+                    $(".y").append('<p>' + n + '</p>');
+                    $(".res").append('<p>' + data + '</p>');
+                    $(".op").append('<p>*<p>');
+                });
+            });
+        })
+    </script>
 </body>
+
 </html>
-
-

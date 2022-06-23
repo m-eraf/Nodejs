@@ -1,7 +1,7 @@
 body {
-  background-color: darksalmon;
-}
-
+  background-image: url("image.gif");
+  background-color: #cccccc;
+ }
 h1 {
   color:azure;
  
@@ -12,4 +12,61 @@ form{
   color:black;
   margin: 0 auto; 
   width:250px;
+}
+
+form {
+  text-align: center;
+  width: 70%;
+}
+table {
+  width: 50%;
+}
+table, td,th {
+  padding: 6px 6px 6px 10px;
+  text-align: center;
+  border-collapse: collapse;
+  border: solid black 1px;
+}
+table.menu {
+  width: auto;
+  margin-right: 0px;
+  margin-left: auto;
+}
+/* table {
+  margin-top: 2%;
+  width: 50%;
+  text-align: right;
+}
+table.menu {
+  width: auto;
+  margin-right: 0px;
+}
+} */
+#calc {
+  display: flex;
+  justify-content: center;
+}
+fieldset {
+  border: 10px solid #363636;
+  color:rgb(0, 0, 0);
+  background-color:rgb(180, 164, 164)
+
+}
+/* css for tic tac */
+.grid {
+  display: grid;
+  margin: 0 auto; 
+  width:250px;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-gap: 10px;
+}
+
+.grid > * {
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.item {
+  grid-column: 2;
+  grid-row: 2;
 }

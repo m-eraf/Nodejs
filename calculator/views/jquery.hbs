@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+    <html lang="en-US">
+    <head>
+        <title>HTML Tutorial</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <meta charset="windows-1252">
+    <script>
+
+    $(document).ready(function(){
+        $("#add").on("click", function(c){
+        var a = parseInt($('#a').val());
+        var b = parseInt($('#b').val());
+           var c = a + b;
+          document.getElementById("num3").value = c;
+});
+      
+    })
+     $(document).ready(function(){
+        $("#sub").on("click", function(c){
+        var a = parseInt($('#a').val());
+        var b = parseInt($('#b').val());
+           var c = a - b;
+           console.log(c)
+        document.getElementById("num3").value = c;
+        })
+        
+    })
+    $(document).ready(function(){
+        $("#multi").on("click", function(c){
+        var a = parseInt($('#a').val());
+        var b = parseInt($('#b').val());
+           var c = a * b;
+          document.getElementById("num3").value = c;
+    
+        })
+    })
+   
+    </script>
+    </head>
+    <body><form >
+      <label for="num1">num1:</label><br>
+       <input type="text" id="a" name="option">
+        <label for="num2">num2:</label><br>
+       <input type="text" id="b" name="task">
+        <label for="num3">answer:</label><br>
+  <input type="text" name="num3" id="num3" readonly placeholder="Answer" value="{{c}}">
+    <input id="add" type="button" value="add">
+    <input id="sub" type="button" value="sub">
+    <input id="multi" type="button" value="multi">
+  <button type="reset">clear</button>
+    
+
+    </form>
+      
+
+    </body>
+
+    </html>

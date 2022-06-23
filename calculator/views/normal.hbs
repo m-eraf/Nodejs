@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" href="public/stylesheets/style.css">
+</head>
+<body>
+<h1>Mini Calculator</h1>
+
+<form id ="add" action="/nor/add" method="post">
+  <label for="num1">num1:</label><br>
+  <input type="number" id="num2" name="num1" value=><br>
+  <label for="num2">num2:</label><br>
+  <input type="number" id="num1" name="num2" value=><br><br>
+  <label for="num3">answer:</label><br>
+  <input type="text" name="num3" id="num3" readonly placeholder="Answer" value="{{c}}">
+  <button id="add" type="submit">Add</button>
+   <button id="sub" type="submit" formaction="/nor/sub">
+            sub
+        </button>
+   <button id="multi" type="submit" formaction="/nor/multi">
+            multi
+        </button>
+</form>
