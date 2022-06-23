@@ -16,8 +16,8 @@ router.get('/',function(req, res){
 
 router.post('/add',function(req, res){
   console.log(req.body);
-  var a = parseInt(req.body.a);
-  var b =parseInt(req.body.b);
+  var a = parseInt(req.body.c);
+  var b =parseInt(req.body.d);
   var o = "+";
   var result =x+y;
   console.log(result);
@@ -35,8 +35,8 @@ router.post('/add',function(req, res){
 
 router.post('/sub',function(req, res){
   console.log(req.body);
-  var a = parseInt(req.body.a);
-  var b =parseInt(req.body.b);
+  var a = parseInt(req.body.c);
+  var b =parseInt(req.body.d);
   var o = "-";
   var result =x-y;
   console.log(result);
@@ -53,8 +53,8 @@ router.post('/sub',function(req, res){
 
 router.post('/mul',function(req, res){
   console.log(req.body);
-  var a = parseInt(req.body.a);
-  var b =parseInt(req.body.b);
+  var a = parseInt(req.body.c);
+  var b =parseInt(req.body.d);
   var o = "*";
   var result =x*y;
   console.log(result);
