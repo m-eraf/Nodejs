@@ -3,7 +3,7 @@ var router = express.Router();
 var _ = require('underscore');
 var mysql = require('mysql');
 
-var pool = mysql.createPool({
+var con = mysql.createPool({
   connectionLimit: 50,
   host : 'easylearning.guru',
   user :  'kcc_student',
@@ -15,8 +15,7 @@ router.get('/',function(req, res){
        res.render('index');
     });
 
-router.all('/add',function(req, res){
-  console.log("ADDITION");
+router.post('/add',function(req, res){
   console.log(req.body);
   var o = "+";
   var x = parseInt(req.body.a);
@@ -24,8 +23,10 @@ router.all('/add',function(req, res){
   var result =x+y;
   console.log(result);
   res.json(result);
-  pool.getConnection(function (err,connection){
-    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')",function(err,rows){
+  con.getConnection(function (err,connection){
+    var sql= "INSERT INTO calcu (num1, num2 , oper, sol)\
+     VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+    connection.query(sql,function(err,rows){
        connection.release();
        if(err) throw err;
        else console.log(rows.length);
@@ -33,8 +34,7 @@ router.all('/add',function(req, res){
  });
 });
 
-router.all('/sub',function(req, res){
-  console.log("SUBTRACTION");
+router.post('/sub',function(req, res){
   console.log(req.body);
   var o = "-";
   var x = parseInt(req.body.a);
@@ -42,17 +42,17 @@ router.all('/sub',function(req, res){
   var result =x-y;
   console.log(result);
   res.json(result);
-  pool.getConnection(function (err,connection){
-    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')",function(err,rows){
-       connection.release();
+  con.getConnection(function (err,connection){
+    var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
+    VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+    connection.query(sql,function(err,rows){
        if(err) throw err;
        console.log(rows.length);
     });
  });
 });
 
-router.all('/mul',function(req, res){
-  console.log("MULTIPLICATION");
+router.post('/mul',function(req, res){
   console.log(req.body);
   var o = "*";
   var x = parseInt(req.body.a);
@@ -60,8 +60,10 @@ router.all('/mul',function(req, res){
   var result =x*y;
   console.log(result);
   res.json(result);
-  pool.getConnection(function (err,connection){
-    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')",function(err,rows){
+  con.getConnection(function (err,connection){
+    var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
+    VALUES ('"+x+"', '"+y+"','"+o+"','"+result+"')"
+    connection.query(sql,function(err,rows){
        connection.release();
        if(err) throw err;
        console.log(rows.length);

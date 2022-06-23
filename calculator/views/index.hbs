@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALCULATOR</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>           
 </head>
 <body>
@@ -22,7 +21,7 @@
                 <br>
         </form>
     </div>
-    <div id="calc">
+    <div id="cal">
 
         <table border="1" 
            align="right" > 
@@ -31,13 +30,12 @@
                 <th>Num2</th>
                 <th>Oper.</th>
                 <th>Sol.</th>
-            </tr>
-    
+            </tr>    
             <tr>
-                <td class="x"></td>
-                <td class="y"></td>
-                <td class="op"></td>
-                <td class="res"></td>
+                <td id="a"></td>
+                <td id="b"></td>
+                <td id="o"></td>
+                <td id="s"></td>
             </tr>
         </table>
 
@@ -51,53 +49,45 @@
             var n = $(".num2").val();
             $(".add").click(function (event) {
                 event.preventDefault()
-                console.log($(".num1").val())
-                console.log($(".num2").val())
                 var m = $(".num1").val()
                 var n = $(".num2").val()
                 $.post({ url: "/add", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
                     console.log(data);
                     $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".x").append('<p>' + m + '</p>');
-                    $(".y").append('<p>' + n + '</p>');
-                    $(".res").append('<p>' + data + '</p>');
-                    $(".op").append('<p>+<p>');
+                    $(".a").append('<p>' + m + '</p>');
+                    $(".b").append('<p>' + n + '</p>');
+                    $(".s").append('<p>' + data + '</p>');
+                    $(".o").append('<p>+<p>');
                 });
             });
         })
         $(document).ready(() => {
             $(".sub").click(function (event) {
                 event.preventDefault()
-                console.log($(".num1").val())
-                console.log($(".num2").val())
-                var m = $(".num1").val();
-                var n = $(".num2").val();
                 var m = $(".num1").val()
                 var n = $(".num2").val()
                 $.post({ url: "/sub", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
                     console.log(data);
                     $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".x").append('<p>' + m + '</p>');
-                    $(".y").append('<p>' + n + '</p>');
-                    $(".res").append('<p>' + data + '</p>');
-                    $(".op").append('<p>-<p>');
+                    $(".a").append('<p>' + m + '</p>');
+                    $(".b").append('<p>' + n + '</p>');
+                    $(".s").append('<p>' + data + '</p>');
+                    $(".o").append('<p>-<p>');
                 });
             });
         })
         $(document).ready(() => {
             $(".mul").click(function (event) {
                 event.preventDefault()
-                console.log($(".num1").val())
-                console.log($(".num2").val())
                 var m = $(".num1").val()
                 var n = $(".num2").val()
                 $.post({ url: "/mul", data: { a: $(".num1").val(), b: $(".num2").val() } }).then((data) => {
                     console.log(data);
                     $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".x").append('<p>' + m + '</p>');
-                    $(".y").append('<p>' + n + '</p>');
-                    $(".res").append('<p>' + data + '</p>');
-                    $(".op").append('<p>*<p>');
+                    $(".a").append('<p>' + m + '</p>');
+                    $(".b").append('<p>' + n + '</p>');
+                    $(".s").append('<p>' + data + '</p>');
+                    $(".o").append('<p>*<p>');
                 });
             });
         })
