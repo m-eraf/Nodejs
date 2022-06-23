@@ -7,6 +7,10 @@ h1 {
  
 
 } 
+img {
+  width: 300px;
+  height: 300px
+}
 
 form{
   color:black;
