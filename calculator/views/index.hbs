@@ -1,97 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
-     <meta charset="windows-1252">          
+    <title>MINI Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
+   
 
-    <div>
-        <img type="images"  src="public/images/image.gif" alt="ResConnect Logo"/>
-        <form>           
-                <label for="num1">num1:</label><br>
-                <input class="num1" type="number" id="num1" name="num1" value=><br>
-                <label for="num2">num2:</label><br>
-                <input class="num2" type="number" id="num2" name="num2" value=><br><br>
-                <button  class="add" id = "add">+</button>
-                <button  class="sub" id = "sub">-</button>
-                <button  class="multi"  id = "multi">x</button>
-                <button type="reset">C</button><br>
-                <br>
-        </form>
-    </div>
-    <div>
+    <div class="container">
+        <div class="calc">
+            <div class="calc_title"><span>MINI CALCULATOR</span></div>
+             <img type="images"  src="public/images/image.gif" alt="ResConnect Logo"/>
+           
+            <form>
+                <div class="calc_body">
+                    <label for="num1">Number 1 : </label> <input type="number" class="num1" id="num1"
+                        name="num1"><br><br>
+                    <label for="num2">Number 2 : </label> <input type="number" class="num2" id="num2"
+                        name="num2"><br><br>
+                    <button class="add" id="add">+</button>
+                    <button class="sub" id="sub">-</button>
+                    <button class="mul" id="mul">x</button><br><br>
+                    <button type="reset">C</button>
+                    <label for="answer">Answer : </label> <input type="text"readonly  class="answer" id="answer"
+                        name="answer"><br><br>
 
-        <table border="1" 
-           align="right" > 
-           <thead>
-               <tr>
-                 <th>Num1</th>
-                <th>Num2</th>
-                <th>Oper.</th>
-                <th>Sol.</th>
-            </tr> 
-           </thead>
-              
-            <tr>
-                <td class="a"></td>
-                <td class="b"></td>
-                <td class="o"></td>
-                <td class="s"></td>
-            </tr>
-        </table>
+                </div>
+            </form>
+
+            <div class="history">
+                <table class="hist_tb">
+                    <caption>HISTORY</caption>
+                    <thead>
+                        <tr>
+                            <th>Num 1</th>
+                            <th>Num 2</th>
+                            <th>Operation</th>
+                            <th>Result</th>
+                            <th>
+                                <select class="oper">
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                    <option value="*">*</option>
+                                </select>
+                            </th>
+                            <th>Submit</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        {{#data}}
+                        <tr>
+                            <td>{{num1}}</td>
+                            <td>{{num2}}</td>
+                            <td>{{op}}</td>
+                            <td>{{res}}</td>
+                            <td>
+                            <td>
+                                <button class="submitBtn" id="{{id}}">Submit</button>
+                            </td>
+                        </tr>
+                        {{/data}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
-       
         $(document).ready(() => {
-            $(".add").click(function (event) {
-                event.preventDefault()
-                var a = $(".num1").val()
-                var b = $(".num2").val()
-                $.post({ url: "/add", data: { c: $(".num1").val(), d: $(".num2").val() } }).then((data) => {
+            $("#add").click(function (event) {
+                event.preventDefault();
+                var x = $(".num1").val();
+                var y = $(".num2").val();
+                $.post({ url: "/add", data: { a: x, b: y } }).then((data) => {
                     console.log(data);
-                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".a").append('<p>' + a + '</p>');
-                    $(".b").append('<p>' + b + '</p>');
-                    $(".s").append('<p>' + data + '</p>');
-                    $(".o").append('<p>+<p>');
+                    if (x == "" || y == "") {
+                        alert("Enter num1 and num2");
+                    }
+                    else {
+                        $('#ans').empty().append('Result : ' + data);
+                        var hist_data = "<tr><td>" + x + "</td><td>" + y + "</td><td>" + "+" + "</td><td>" + data + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                        $(".hist_tb tbody").append(hist_data);
+                    }
                 });
             });
-        })
+        });
         $(document).ready(() => {
-            $(".sub").click(function (event) {
-                event.preventDefault()
-                var a = $(".num1").val()
-                var b = $(".num2").val()
-                $.post({ url: "/sub", data: { c: $(".num1").val(), d: $(".num2").val() } }).then((data) => {
+            $("#sub").click(function (event) {
+                event.preventDefault();
+                var x = $(".num1").val();
+                var y = $(".num2").val();
+                $.post({ url: "/sub", data: { a: x, b: y } }).then((data) => {
                     console.log(data);
-                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".a").append('<p>' + a + '</p>');
-                    $(".b").append('<p>' + b + '</p>');
-                    $(".s").append('<p>' + data + '</p>');
-                    $(".o").append('<p>+<p>');
+                    if (x == "" || y == "") {
+                        alert("Enter num1 and num2");
+                    }
+                    else {
+                        $('#ans').empty().append('Result : ' + data);
+                        var hist_data = "<tr><td>" + x + "</td><td>" + y + "</td><td>" + "-" + "</td><td>" + data + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                        $(".hist_tb tbody").append(hist_data);
+                    }
                 });
             });
-        })
+        });
         $(document).ready(() => {
-            $(".multi").click(function (event) {
-                event.preventDefault()
-                var a = $(".num1").val()
-                var b = $(".num2").val()
-                $.post({ url: "/multi", data: { c: $(".num1").val(), d: $(".num2").val() } }).then((data) => {
+            $("#mul").click(function (event) {
+                event.preventDefault();
+                var x = $(".num1").val();
+                var y = $(".num2").val();
+                $.post({ url: "/mul", data: { a: x, b: y } }).then((data) => {
                     console.log(data);
-                    $("#ans").append('<p>' + "ANSWER :" + data + '</p>');
-                    $(".a").append('<p>' + a + '</p>');
-                    $(".b").append('<p>' + b + '</p>');
-                    $(".s").append('<p>' + data + '</p>');
-                    $(".o").append('<p>+<p>');
+                    if (x == "" || y == "") {
+                        alert("Enter num1 and num2");
+                    }
+                    else {
+                        $('#ans').empty().append('Result : ' + data);
+                        var hist_data = "<tr><td>" + x + "</td><td>" + y + "</td><td>" + "*" + "</td><td>" + data + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                        $(".hist_tb tbody").append(hist_data);
+                    }
                 });
             });
-        })
+        });
+        $('.submitBtn').click(function (event) {
+            $.post('/updateData', $("ritik_cal." + event.target.id).serializeArray()).then((data) => {
+                var id = event.target.id;
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    if (data[i].id == id) {
+                        var n1 = data[i].num1;
+                        var n2 = data[i].num2;
+                        var oper = $(".oper").val();
+                        console.log(oper);
+                        if (oper === '+') {
+                            console.log(n1 + n2);
+                            var res = n1 + n2;
+                            $.post({ url: "/insertUpdate", data: { a: n1, b: n2, op: oper, rest: res } }).then((data) => { });
+                            $('#ans').empty().append('Result : ' + res);
+                            var hist_data = "<tr><td>" + n1 + "</td><td>" + n2 + "</td><td>" + "+" + "</td><td>" + res + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                            $(".hist_tb tbody").append(hist_data);
+                        }
+                        if (oper === '-') {
+                            console.log(n1 - n2);
+                            var res = n1 - n2;
+                            $.post({ url: "/insertUpdate", data: { a: n1, b: n2, op: oper, rest: res } }).then((data) => { });
+                            $('#ans').empty().append('Result : ' + res);
+                            var hist_data = "<tr><td>" + n1 + "</td><td>" + n2 + "</td><td>" + "-" + "</td><td>" + res + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                            $(".hist_tb tbody").append(hist_data);
+                        }
+                        if (oper === '*') {
+                            console.log(n1 * n2);
+                            var res = n1 * n2;
+                            $.post({ url: "/insertUpdate", data: { a: n1, b: n2, op: oper, rest: res } }).then((data) => { });
+                            $('#ans').empty().append('Result : ' + res);
+                            var hist_data = "<tr><td>" + n1 + "</td><td>" + n2 + "</td><td>" + "*" + "</td><td>" + res + "</td><td>" + "</td><td>" + "<button class='submitBtn'>Submit</button> </td></tr>";
+                            $(".hist_tb tbody").append(hist_data);
+                        }
+                    }
+                }
+            })
+            console.log(event.target.id)
+        });
     </script>
+
 </body>
 
 </html>

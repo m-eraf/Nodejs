@@ -1,5 +1,4 @@
 body {
-  background-image: url("image.gif");
   background-color: #cccccc;
  }
 h1 {
@@ -33,10 +32,10 @@ table, td,th {
 }
 table.menu {
   width: auto;
-  margin-right: 0px;
-  margin-left: auto;
+  margin-right: auto;
+  margin-left: 0px;
 }
-/* table {
+table {
   margin-top: 2%;
   width: 50%;
   text-align: right;
@@ -45,8 +44,8 @@ table.menu {
   width: auto;
   margin-right: 0px;
 }
-} */
-#calc {
+
+ #calc {
   display: flex;
   justify-content: center;
 }
@@ -56,7 +55,7 @@ fieldset {
   background-color:rgb(180, 164, 164)
 
 }
-/* css for tic tac */
+/* css for tic tac
 .grid {
   display: grid;
   margin: 0 auto; 
@@ -73,4 +72,4 @@ fieldset {
 .item {
   grid-column: 2;
   grid-row: 2;
-}
+} */

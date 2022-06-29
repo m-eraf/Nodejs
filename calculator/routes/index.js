@@ -3,79 +3,138 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var con = mysql.createPool({
-  connectionLimit: 50,
-  host : 'easylearning.guru',
-  user :  'kcc_student',
-  password : 'Kccitm.edu.in1',
-  database : 'kccStudent'
+  connectionLimit: 60,
+  host: 'easylearning.guru',
+  user: 'kcc_student',
+  password: 'Kccitm.edu.in1',
+  database: 'kccStudent'
 });
 
-router.get('/',function(req, res){
-       res.render('index');
-    });
+// =================================== Calculator JS Starting =============================
 
-router.post('/add',function(req, res){
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  con.getConnection(function (err, connection) {
+    connection.query("SELECT * FROM  calcu ORDER BY id", function (err, results) {
+      if (err) throw err;
+      else console.log(results);
+      res.render('index', { "data": results});
+    });
+  });
+});
+
+
+router.all('/add', function (req, res, next) {
+  console.log("Adding two number");
   console.log(req.body);
-  var a = parseInt(req.body.c);
-  var b =parseInt(req.body.d);
-  var o = "+";
-  var result =x+y;
+  var num1 = parseFloat(req.body.a);
+  var num2 = parseFloat(req.body.b);
+  var optr = "+";
+  console.log(num1);
+  console.log(num2);
+  var result = num1 + num2;
   console.log(result);
   res.json(result);
-  con.getConnection(function (err,connection){
-    var sql= "INSERT INTO calcu (num1, num2 , oper, sol)\
-     VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
-    connection.query(sql,function(err,rows){
-       connection.release();
-       if(err) throw err;
-       else console.log(rows.length);
+  con.getConnection(function (err, connection) {
+    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+      connection.release();
+      if (err) throw err;
+      else console.log(rows.length);
     });
- });
+  });
 });
 
-router.post('/sub',function(req, res){
+router.all('/sub', function (req, res, next) {
+  console.log("Subtracting two number");
   console.log(req.body);
-  var a = parseInt(req.body.c);
-  var b =parseInt(req.body.d);
-  var o = "-";
-  var result =x-y;
+  var num1 = parseFloat(req.body.a);
+  var num2 = parseFloat(req.body.b);
+  var optr = "-";
+  var result = num1 - num2;
   console.log(result);
   res.json(result);
-  con.getConnection(function (err,connection){
-    var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
-    VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
-    connection.query(sql,function(err,rows){
-       if(err) throw err;
-       console.log(rows.length);
+  con.getConnection(function (err, connection) {
+    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+      connection.release();
+      if (err) throw err;
+      else console.log(rows.length);
     });
- });
+  });
 });
 
-router.post('/mul',function(req, res){
+router.all('/mul', function (req, res, next) {
+  console.log("Multiplying two number");
   console.log(req.body);
-  var a = parseInt(req.body.c);
-  var b =parseInt(req.body.d);
-  var o = "*";
-  var result =x*y;
+  var num1 = parseFloat(req.body.a);
+  var num2 = parseFloat(req.body.b);
+  var optr = "*";
+  var result = num1 * num2;
   console.log(result);
   res.json(result);
-  con.getConnection(function (err,connection){
-    var sql= "INSERT INTO calcu (num1, num2 , oper, sol) \
-    VALUES ('"+a+"', '"+b+"','"+o+"','"+result+"')"
-    connection.query(sql,function(err,rows){
-       connection.release();
-       if(err) throw err;
-       console.log(rows.length);
+  con.getConnection(function (err, connection) {
+    connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+      connection.release();
+      if (err) throw err;
+      else console.log(rows.length);
     });
- });
+  });
+});
+
+// Calculating data from table 
+router.post('/updateData', function (req, res, next) {
+  console.log(req.body)
+  con.getConnection(function (err, connection) {
+    connection.query("SELECT * FROM  calcu ORDER BY id", function (err, results) {
+      if (err) throw err;
+      else console.log(results);
+      res.json(results)
+    });
+  });
+});
+
+// Calculated data from table now inserting in table
+router.all('/insertUpdate', function (req, res, next) {
+  console.log(req.body);
+  var num1 = req.body.a;
+  var num2 = req.body.b;
+  var optr = req.body.op;
+  var result = req.body.rest;
+
+  // if operator === "+"
+  if(optr === '+'){
+    con.getConnection(function (err, connection) {
+      connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+        connection.release();
+        if (err) throw err;
+        else console.log(rows.length);
+      });
+    });
+  }
+
+  // if operator === "-"
+  if(optr === '-'){
+    con.getConnection(function (err, connection) {
+      connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+        connection.release();
+        if (err) throw err;
+        else console.log(rows.length);
+      });
+    });
+  }
+
+  // if operator === "*"
+  if(optr === '*'){
+    con.getConnection(function (err, connection) {
+      connection.query("INSERT INTO calcu (num1, num2 , oper, sol) VALUES ('" + num1 + "', '" + num2 + "','" + optr + "','" + result + "')", function (err, rows) {
+        connection.release();
+        if (err) throw err;
+        else console.log(rows.length);
+      });
+    });
+  }
 
 });
 
+// ==================================== Calculator JS Ending ================================
 
-router.get('/jquery',function(req, res){
-  res.render('jquery');
-});
-router.get('/check',function(req, res){
-  res.render('check');
-});
 module.exports = router;
