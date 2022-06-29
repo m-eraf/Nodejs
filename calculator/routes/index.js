@@ -9,10 +9,6 @@ var con = mysql.createPool({
   password: 'Kccitm.edu.in1',
   database: 'kccStudent'
 });
-
-// =================================== Calculator JS Starting =============================
-
-/* GET home page. */
 router.get('/', function (req, res, next) {
   con.getConnection(function (err, connection) {
     connection.query("SELECT * FROM  calcu ORDER BY id", function (err, results) {
@@ -134,7 +130,4 @@ router.all('/insertUpdate', function (req, res, next) {
   }
 
 });
-
-// ==================================== Calculator JS Ending ================================
-
 module.exports = router;
