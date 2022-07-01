@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Register</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            var password = $("#password").val();
+            var confirmPassword = $("#cpassword").val();
+            var username = $("#fullname").val();
+            if (password == ""||username == "") {
+                alert("input can't be blank.");
+                return false;                  
+            }
+            if (password!=confirmPassword){
+              alert("confirm password & password are not same");
+              return false;
+            }
+            else{
+              alert("Successfully Registered")
+              return true;
+            }        
+        });
+    });
+</script>
+
+
+	</head>
+	<body>
+    <h1>Register</h1>
+<form action="/register" method="post" >
+  <label for="name">Username:</label><br>
+  <i class="fas fa-user"></i>
+  <input type="text" id="fullname" name="fullname"><br>
+  <label for="fname">Password:</label><br>
+  <i class="fas fa-lock"></i>
+  <input type="password" id="password" name="password"><br><br>
+    <label for="lname">Confirm Password:</label><br>
+    <i class="fas fa-lock"></i>
+  <input type="password" id="cpassword" name="cpassword"><br><br>
+  <input type="submit"  id="btnSubmit" value="register">
+</form>
+	</body>
+</html>

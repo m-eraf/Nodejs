@@ -8,10 +8,7 @@
     <title>MINI Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-
 <body>
-   
-
     <div class="container">
         <div class="calc">
             <div class="calc_title"><span>MINI CALCULATOR</span></div>
@@ -27,12 +24,9 @@
                     <button class="sub" id="sub">-</button>
                     <button class="mul" id="mul">x</button><br><br>
                     <button type="reset">C</button>
-
                     <div class="answer" id="ans">Result : </div>
-
                 </div>
             </form>
-
             <div class="history">
                 <table class="hist_tb">
                     <thead>
@@ -51,8 +45,6 @@
                             <th>Submit</th>
                         </tr>
                     </thead>
-
-
                     <tbody>
                         {{#data}}
                         <tr>
@@ -71,7 +63,6 @@
             </div>
         </div>
     </div>
-
     <script>
         $(document).ready(() => {
             $("#add").click(function (event) {
