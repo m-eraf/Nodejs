@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Books</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<body>
+     <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <div class="tbl-header">
+<h2>Showing the list of Books</h2>
+    <table  cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            {{!-- <th>S.N</th> --}}
+            <th>Book Name</th>
+            <th>No. of copies</th>
+            <th>Author Name</th>
+        </tr>
+        
+        {{#each userData}}
+        
+        <tr>
+            <td>{{name}}</td>
+            <td>{{ncopy}}</td>
+            <td>{{aname}}</td>
+            <td>
+                <form action="/delete" method="post">
+                <input type="text" id="ds" value="{{id}}">
+                <input type="submit" value="delete">
+                </form>
+            </td>
+            {{!-- <td><button type="button" onclik.href="/delete" class="btn-delete" id="{{id}}" placeholder="Update">Delete</input> </td> --}}
+            
+            
+        </tr>
+        {{/each}}
+    </table>
+    
+    </div>
+</body>
+{{!-- <script>
+    $(".btn-delete").click((event)=>{
+    $.post('/delete', {id:event.target.id}).then((data)=>{
+       if(data.code ==1){
+           location.reload();
+           }else{
+           alert("not deleted")
+       }
+    })
+})
+</script> --}}
+
+</html>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            var password = $("#password").val();
+            var confirmPassword = $("#cpassword").val();
+            var username = $("#name").val();
+            if (password == ""||username == "") {
+                alert("input can't be blank.");
+                return false;                  
+            }
+            if (password!=confirmPassword){
+              alert("confirm password & password are not same");
+              return false;
+            }
+            else{
+              alert("Successfully Registered")
+              return true;
+            }        
+        });
+    });
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Authentications</title>
+</head>
+
+<body>
+          
+    <div class="container">
+        <h1 class="text-center p-3">Register Yourself</h1>
+        <div style="margin: 0 auto;" class="col-12 col-md-6 col-lg-5 p-5 customborder">
+
+                    <form action="/register" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="mb-3">
+                            <label for="name">Enter Book Name</label>
+                            <input type="text" class="form-control form-control-lg" name="name" id="name"
+                                autocomplete="off" placeholder="Book Name">
+                      
+                  
+                         <div class="mb-3">
+                            <label for="ncopy">No. of Copies</label>
+                            <input type="text" class="form-control form-control-lg" name="copy" id="copy"
+                                autocomplete="off" placeholder="Copy's Number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="batch">Author Name</label>
+                            <input type="text" class="form-control form-control-lg" name="aname" id="aname"
+                                autocomplete="off" placeholder="Author Name">
+                        </div>
+                        <div class="d-grid gap-3 mb-3">
+                            <input type="submit" id = "btnSubmit" class="btn btn-lg btn-outline-primary" value="Register">
+        
+                        </div>
+                       
+                    </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
