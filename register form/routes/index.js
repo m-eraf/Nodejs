@@ -43,7 +43,7 @@ router.post('/auth', function(req, res) {
 			} else {
 				alert('Incorrect Username and/or Password!');
         res.redirect('log')
-			}			
+			}		
 			
 		});
 	} else {

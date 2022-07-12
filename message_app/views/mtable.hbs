@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>List of GF</title>
+</head>
+<body>
+     <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <div class="tbl-header">
+<h2>Showing the list of your GFs</h2>
+    <table  cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            {{!-- <th>S.N</th> --}}
+            <th>Name</th>
+            <th>Messages</th>
+            
+        </tr>
+        
+        {{#each userData}}
+        
+        <tr>
+            {{!-- <td>{{i}}</td> --}}
+            <td>{{name}}</td>
+            <td>{{message}}</td>
+            
+            
+        </tr>
+        {{/each}}
+    </table>
+    
+    </div>
+</body>
+
+</html>
