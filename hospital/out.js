@@ -1,5 +1,4 @@
 (() => {
-  // node_modules/html-to-image/es/mimes.js
   var WOFF = "application/font-woff";
   var JPEG = "image/jpeg";
   var mimes = {
@@ -23,7 +22,6 @@
     return mimes[extension] || "";
   }
 
-  // node_modules/html-to-image/es/dataurl.js
   function getContentFromDataUrl(dataURL) {
     return dataURL.split(/,/)[1];
   }
@@ -94,7 +92,6 @@
     return dataURL;
   }
 
-  // node_modules/html-to-image/es/util.js
   function resolveUrl(url, baseUrl) {
     if (url.match(/^[a-z]+:\/\//i)) {
       return url;
