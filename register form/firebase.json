@@ -1,0 +1,14 @@
+{
+  "emulators": {
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true,
+      "port": 5000
+    },
+    "functions": {
+      "port": 5001
+    }
+  }
+}

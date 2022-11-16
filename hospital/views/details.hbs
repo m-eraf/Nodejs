@@ -1,0 +1,195 @@
+<!DOCTYPE >
+<html lang="en">
+<head>
+  
+</head>
+<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <div class="tbl-header">
+        <table align="center">
+            <tr>  
+            <th>Name</th>
+            
+            <th>Age/sex</th>
+            <th>Dated</th>
+            
+        </tr>
+        
+        {{#each userData}}
+        
+        <tr>
+            <td>{{fname}}</td>
+            <td>{{age}}</td>
+            <td>{{date}}</td>
+            
+            
+        </tr>
+        {{/each}}
+
+        </table>
+        <p1 align="center">This prescription is digitally written and signed <br>Valid for only 7 days<br></p1>
+         <table align="right">
+            <tr>
+            <th>BP</th>
+            <th>PL</th>
+            <th>SPO2</th>
+            <th>Weight</th>
+            
+        </tr>
+        
+        {{#each userData}}
+        
+        <tr>
+            <td>{{bp}}</td>
+            <td>{{pl}}</td>
+            <td>{{sp}}</td>
+            <td>{{wt}}</td>
+            
+            
+        </tr>
+        {{/each}}
+
+        </table>
+        
+    
+    </div>
+</body>
+  <style>
+       body {
+  font-size: 10px;
+  font-family: monospace;
+}
+table {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+tbody {
+  display: flex;
+  width: 800px;
+  position: relative;
+  align-items: stretch;
+  border: 1px solid black;
+  
+}
+tr {
+  flex-basis: 33.33333333%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 5px 10px;
+ 
+  
+}
+tr + tr {
+border-left: 1px solid black;
+}
+
+th, td {
+  flex-basis: 100%;
+  text-align: left;
+  display: flex;
+  padding: 2px;
+  
+}
+th {
+  font-weight: bold;
+}
+</style>
+</html>
+
+<html>
+<head>
+  <input type="button" id = "clear" value="">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<style>canvas { 
+  text-align:center;
+   border: 1px solid #ccc; }</style>
+<script type="text/javascript">
+$( document ).ready(function() {
+var canvasWidth = 900; var cavasHeight = 600;
+
+var canvasDiv = document.getElementById('canvasDiv');
+canvas = document.createElement('canvas');
+canvas.setAttribute('width', canvasWidth);
+canvas.setAttribute('height', cavasHeight);
+canvas.setAttribute('id', 'canvas');
+canvasDiv.appendChild(canvas);
+if(typeof G_vmlCanvasManager != 'undefined') {
+    canvas = G_vmlCanvasManager.initElement(canvas);
+}
+context = canvas.getContext("2d");
+
+$('#canvas').mousedown(function(e){
+      paint = true;
+      addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+      redraw();
+    });
+
+$('#canvas').mousemove(function(e){
+      if(paint){
+        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+        redraw();
+      }
+    });
+
+$('#canvas').mouseup(function(e){
+      paint = false;
+    });
+
+$('#canvas').mouseleave(function(e){
+      paint = false;
+    });
+
+$('#clear').click(function(){
+  clickX.length = 0;
+  clickY.length = 0;
+  clickDrag.length = 0;
+  redraw();
+});
+
+var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
+var paint;
+
+function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+}
+
+function redraw(){
+      context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+      context.strokeStyle = "#df4b26";
+      context.lineJoin = "round";
+      context.lineWidth = 5;
+
+      for(var i=0; i < clickX.length; i++) {        
+        context.beginPath();
+        if(clickDrag[i] && i){
+          context.moveTo(clickX[i-1], clickY[i-1]);
+         }else{
+           context.moveTo(clickX[i]-1, clickY[i]);
+         }
+         context.lineTo(clickX[i], clickY[i]);
+         context.closePath();
+         context.stroke();
+      }
+    }
+    });
+   </script>
+   </head>
+     <body>
+       <div id="canvasDiv"></div>
+    </body>
+<a href="/">Click for new patient</a>
+ </html>
