@@ -42,7 +42,7 @@ router.get('/hh', function(req, res, next) {
   res.render('screen');
 });
 router.get('/draw', function(req, res, next) {
-  res.render('draw');
+  res.render('camera');
 });
 
 module.exports = router;
